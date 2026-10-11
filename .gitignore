@@ -1,0 +1,6 @@
+/target/
+/apps/slidestrike/target/
+/vendor/designcraft-page/target/
+*.sstrike
+*.tmp
+*.log

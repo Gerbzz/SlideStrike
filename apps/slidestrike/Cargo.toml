@@ -1,0 +1,36 @@
+[package]
+name = "slidestrike"
+version = "0.1.0"
+edition = "2024"
+
+# Independent lock/build graph while another app owns the shared build slot.
+[workspace]
+
+[dependencies]
+image = { version = "0.25.10", default-features = false, features = ["png", "jpeg"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.11"
+uuid = { version = "=1.26.1", features = ["serde", "v4"] }
+zip = { version = "9.0.1", default-features = false, features = ["deflate-flate2-zlib-rs"] }
+designcraft-doc = { path = "../../vendor/designcraft-page/crates/doc", optional = true }
+designcraft-geom = { path = "../../vendor/designcraft-page/crates/geom", optional = true }
+designcraft-color = { path = "../../vendor/designcraft-page/crates/color", optional = true }
+designcraft-compose = { path = "../../vendor/designcraft-page/crates/compose", optional = true }
+designcraft-images = { path = "../../vendor/designcraft-page/crates/images", optional = true }
+designcraft-render = { path = "../../vendor/designcraft-page/crates/render", optional = true }
+designcraft-pdf = { path = "../../vendor/designcraft-page/crates/pdf", optional = true }
+eframe = { version = "=0.36.2", default-features = false, features = ["default_fonts", "glow", "accesskit", "wayland", "x11"], optional = true }
+
+[features]
+donor-export = ["dep:designcraft-doc", "dep:designcraft-geom", "dep:designcraft-color", "dep:designcraft-compose", "dep:designcraft-images", "dep:designcraft-render", "dep:designcraft-pdf"]
+native-ui = ["donor-export", "dep:eframe"]
+
+[[bin]]
+name = "slidestrike-native"
+path = "src/bin/slidestrike-native.rs"
+required-features = ["native-ui"]
+
+[dev-dependencies]
+hayro-syntax = "0.7.2"
+

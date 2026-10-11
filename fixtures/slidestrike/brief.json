@@ -1,0 +1,11 @@
+{
+  "size": "16:9",
+  "slides": [
+    {"layout": "title", "title": "Launch Brief", "subtitle": "October 2026"},
+    {"layout": "two-column", "title": "Results", "left": "10 pilots", "right": "8 retained", "image": {"width_px": 320, "height_px": 180, "pixels": "solid-blue-with-white-diagonal", "alt": "Retention graphic"}},
+    {"layout": "title-content", "title": "Next", "notes": "Pause for questions."}
+  ],
+  "final_order_by_original_index": [1, 3, 2],
+  "expected_png_count": 3,
+  "expected_pdf_page_count": 3
+}
