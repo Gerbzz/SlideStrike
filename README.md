@@ -2,15 +2,13 @@
   <img src="assets/branding/SlideStrike.png" alt="Original SlideStrike logo" width="160" height="160">
 </p>
 
-# SlideStrike
+<h1 align="center">SlideStrike</h1>
 
-**by PWDS**
-
-**Build the story one slide at a time.**
+<p align="center"><strong>by PWDS</strong><br><strong>Build the story one slide at a time.</strong></p>
 
 SlideStrike provides an editable deck for a presentation in progress. Arrange slides with text and images, keep speaker notes, revise with undo and redo, and export PNG or PDF through the optional native editor.
 
-[Highlights](#highlights) · [Build and test](#build-and-test) · [Original artwork](assets/branding)
+<p align="center"><a href="#highlights">Highlights</a> · <a href="#build-and-test">Build and test</a> · <a href="assets/branding">Original artwork</a></p>
 
 ## Highlights
 
