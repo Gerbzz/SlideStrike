@@ -6,7 +6,7 @@
 
 SlideStrike provides an editable deck for a presentation in progress. Arrange slides with text and images, keep speaker notes, revise with undo and redo, and export PNG or PDF through the optional native editor.
 
-### Highlights
+## Highlights
 
 - Arrange text and image objects on slides.
 - Save an editable `.sstrike` deck with notes.
@@ -18,7 +18,7 @@ Source-only editor prototype. The standalone package passed 21 locked tests and 
 
 ## Deck and exported pages
 
-A `.sstrike` deck keeps slide objects and speaker notes editable. PNG and PDF exports contain the presented pages; notes stay with the deck and are omitted from those pages. The bounded export check used three small synthetic slides, so wider layout fidelity remains open.
+A `.sstrike` deck keeps slide objects and speaker notes editable. PNG and PDF exports contain the presented pages; notes stay in `.sstrike` and are omitted from those exports. The bounded export check used three small synthetic slides, so wider layout fidelity remains open.
 
 ## Build and test
 
