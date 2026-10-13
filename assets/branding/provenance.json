@@ -1,0 +1,21 @@
+{
+  "app": "SlideStrike",
+  "asset": "assets/branding/SlideStrike.png",
+  "method": "Lossless rectangular extraction of original pixels with ImageMagick. No scaling, recoloring, tracing, generation, transparency fabrication or animal changes. Original cream outside rounded corners retained. Labels excluded.",
+  "coordinate_system": "Origin top-left; crop bounds [left, top, right, bottom), right/bottom exclusive.",
+  "source_sha256": "0d16865033d8ca3b0528128ae2e2680defe6b8be6a01bf76a4e35e3fe7b75a1d",
+  "crop_bounds": [
+    1360,
+    0,
+    2016,
+    656
+  ],
+  "dimensions": [
+    656,
+    656
+  ],
+  "sha256": "221ca71c03b2f7b28dc3940cfd7e55a7f4840f6e66cb8a73f4ad4fe70821bcd9",
+  "decoded_rgb_sha256": "4f94c971ced0865dede4d09b333f5ebef24302fd15c17486adb64218dec976b4",
+  "pixel_equality_verified": true,
+  "git_blob_sha": "2b11fc265a5e9b0c0ee7104cdbe8f5933167a740"
+}
