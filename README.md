@@ -1,8 +1,24 @@
 # SlideStrike
 
-SlideStrike is a Windows-first Rust presentation editor prototype. It edits an open `.sstrike` deck with slides, text and image objects, notes, selection and dragging, undo/redo, and presentation mode. The optional native editor exports PNG and PDF through the selected DesignCraft page crates.
+**by PWDS**
 
-This repository layout is a source package from the frozen 2026-10-11 Office checkpoint. The standalone layout passed 21 locked all-feature tests and built a Windows native executable. Independent review of the frozen outputs checked synthetic, searchable PDF text. No release or installer is supplied.
+**Build the story one slide at a time.**
+
+SlideStrike provides an editable deck for a presentation in progress. Arrange slides with text and images, keep speaker notes, revise with undo and redo, and export PNG or PDF through the optional native editor.
+
+### Highlights
+
+- Arrange text and image objects on slides.
+- Save an editable `.sstrike` deck with notes.
+- Present or export pages as PNG or PDF.
+
+## Current status
+
+Source-only editor prototype. The standalone package passed 21 locked tests and built a Windows native executable, but no installer or release is supplied. Broad presentation compatibility, native interaction, accessibility, and layout fidelity remain unverified.
+
+## Build a deck
+
+Create slides with text and image objects, keep speaker notes in the editable `.sstrike` deck, and revise with undo and redo. Use presentation mode for a local review or export pages to PNG or PDF through the native editor.
 
 ## Build and test
 
