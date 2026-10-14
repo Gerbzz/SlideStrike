@@ -1,5 +1,9 @@
 # SlideStrike editor screenshot provenance
 
+![Archived lightweight SlideStrike editor showing a synthetic launch brief](../assets/screenshots/slidestrike-editor.png)
+
+*Archived lightweight editor. This is not a screenshot of the newer native foundation in [draft PR #1](https://github.com/Gerbzz/SlideStrike/pull/1).*
+
 `assets/screenshots/slidestrike-editor.png` is an uncomposited 1450 × 850 image returned by the lightweight SlideStrike Windows editor's one-shot `--capture` option on October 14, 2026. SHA-256: `9D837789D0087774E3C4A2C464841AD7DAF280EF7FDF94783B6FB58FFBD12ABF`. The app exited with status 0 and the image was visually inspected.
 
 The editor opened a self-authored local `.sstrike` deck with three slides titled **Launch Brief**. The first slide contains the title and an October 2026 subtitle; another includes fictional pilot counts. The fixture is not distributed with this repository, and the screenshot contains no client material or personal workstation path.
