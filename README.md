@@ -15,6 +15,10 @@
 
 SlideStrike provides an editable deck for a presentation in progress. Arrange slides with text and images, keep speaker notes, revise with undo and redo, and export PNG or PDF through the optional native editor.
 
+![SlideStrike native editor showing a synthetic launch brief with slide list, canvas, and inspector](assets/screenshots/slidestrike-editor.png)
+
+*The lightweight Windows editor opened a self-authored three-slide deck. [Capture provenance and limits](docs/SCREENSHOT_PROVENANCE.md).*
+
 <p align="center"><a href="#highlights">Highlights</a> · <a href="#build-and-test">Build and test</a> · <a href="assets/branding">Original artwork</a></p>
 
 ## Highlights
@@ -25,7 +29,7 @@ SlideStrike provides an editable deck for a presentation in progress. Arrange sl
 
 ## Current status
 
-Source-only editor prototype. The standalone package passed 21 locked tests and built a Windows native executable, but no installer or release is supplied. Broad presentation compatibility, native interaction, accessibility, and layout fidelity remain unverified.
+The main branch is a lightweight editor prototype. The standalone package passed 21 locked tests, and its native editor built and rendered the screenshot above, but no installer or release is supplied. A [newer native foundation remains in draft PR #1](https://github.com/Gerbzz/SlideStrike/pull/1); its [Windows source checks passed on revision `00d189c`](https://github.com/Gerbzz/SlideStrike/actions/runs/38575829825), but it has no matching runtime screenshot or visual acceptance yet. Broad presentation compatibility, native interaction, accessibility, and layout fidelity remain unverified.
 
 ## Deck and exported pages
 
