@@ -15,6 +15,10 @@
 
 SlideStrike is a presentation editor project with a slide model, speaker notes, images, a native desktop UI, and export paths. This repository preserves the original editable `.sstrike` prototype and includes a fuller native presentation foundation based on a pinned DeckCraft source revision.
 
+![SlideStrike native editor showing a synthetic launch brief with slide list, canvas, and inspector](assets/screenshots/slidestrike-editor.png)
+
+*The lightweight Windows editor opened a self-authored three-slide deck. [Capture provenance and limits](docs/SCREENSHOT_PROVENANCE.md).*
+
 <p align="center"><a href="#highlights">Highlights</a> · <a href="#build-and-test">Build and test</a> · <a href="assets/branding">Original artwork</a></p>
 
 ## Highlights
@@ -26,7 +30,7 @@ SlideStrike is a presentation editor project with a slide model, speaker notes, 
 
 ## Current status
 
-The original standalone package passed 21 locked tests and built a Windows native executable in an earlier checkpoint. The native foundation [built on Windows CI](https://github.com/Gerbzz/SlideStrike/actions/runs/38571021743), and its focused legacy import/save tests passed 4/4. The native editor has not been launched or visually accepted. No installer or release is supplied. Presentation compatibility, native interaction, accessibility, and layout fidelity remain unverified.
+The original standalone package passed 21 locked tests at an earlier checkpoint. Its lightweight editor built offline and rendered the screenshot above from a self-authored deck. The newer native foundation [built on Windows CI at source revision `00d189c`](https://github.com/Gerbzz/SlideStrike/actions/runs/38575829825), with focused import and overwrite-guard checks passing. That newer editor has not been launched or visually accepted. No installer or release is supplied. Presentation compatibility, native interaction, accessibility, and layout fidelity remain unverified.
 
 | Path | Role |
 | --- | --- |
