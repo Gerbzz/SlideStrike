@@ -1,0 +1,48 @@
+name: SlideStrike native Windows checks
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/native-windows.yml
+      - native/slidestrike/**
+      - apps/slidestrike/**
+      - vendor/designcraft-page/**
+      - fixtures/slidestrike/**
+
+permissions:
+  contents: read
+
+jobs:
+  native:
+    if: github.repository == 'Gerbzz/SlideStrike'
+    runs-on: windows-latest
+    timeout-minutes: 75
+    defaults:
+      run:
+        working-directory: native/slidestrike
+        shell: pwsh
+    env:
+      CARGO_BUILD_JOBS: '2'
+      CARGO_INCREMENTAL: '0'
+      CARGO_PROFILE_DEV_DEBUG: '0'
+      CARGO_PROFILE_TEST_DEBUG: '0'
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Show Rust toolchain
+        run: |
+          rustc --version
+          cargo --version
+
+      - name: Build SlideStrike desktop editor
+        run: cargo build --locked -p deckcraft --bin slidestrike
+
+      - name: Test older deck import and native save/reopen
+        run: cargo test --locked -p deckcraft-engine --lib legacy::tests::
+
+      - name: Test protection of older deck destinations
+        run: cargo test --locked -p deckcraft-engine --lib legacy_destination_tests::
