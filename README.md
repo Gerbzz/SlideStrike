@@ -4,7 +4,14 @@
 
 <h1 align="center">SlideStrike</h1>
 
-<p align="center"><strong>by PWDS</strong><br><strong>Build the story one slide at a time.</strong></p>
+<p align="center">
+  <a href="https://prowebdevsolutions.com"><picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/branding/PWDS-logo-orange.svg">
+    <img src="assets/branding/PWDS-logo.png" alt="PWDS company logo" width="120">
+  </picture></a>
+</p>
+
+<p align="center"><strong>Build the story one slide at a time.</strong></p>
 
 SlideStrike provides an editable deck for a presentation in progress. Arrange slides with text and images, keep speaker notes, revise with undo and redo, and export PNG or PDF through the optional native editor.
 
@@ -40,3 +47,7 @@ The app has its own `Cargo.lock` and `[workspace]`. Its path dependencies resolv
 The synthetic export checks covered three small slides with visible text and image placement. Speaker notes stay in the editable deck and are omitted from exported pages. This does not establish broad PowerPoint compatibility or layout fidelity. Native pointer, keyboard, screen reader, high contrast, scaling, presentation controls, font fallback, and other-platform acceptance are pending.
 
 The app's first-party license has not been selected; no first-party license grant is made here. The bundled upstream DesignCraft subset retains its original MIT/Apache license texts and third-party font/asset notices. See [SOURCE_SCOPE.md](SOURCE_SCOPE.md) for provenance and the tested boundary.
+
+## PWDS brand artwork
+
+The company mark in this masthead is the existing [official PWDS logo](https://github.com/Gerbzz/PWDS-Website/blob/main/public/prowebdevsolutions-logo.png), with the [official orange display asset](https://prowebdevsolutions.com/images/prowebdevsolutions-logo-orange.svg) for dark backgrounds. The app logo above it remains the original Strike suite artwork.
