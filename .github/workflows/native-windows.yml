@@ -42,7 +42,9 @@ jobs:
         run: cargo build --locked -p deckcraft --bin slidestrike
 
       - name: Test older deck import and native save/reopen
-        run: cargo test --locked -p deckcraft-engine --lib legacy::tests::
+        run: |
+          cargo test --locked -p deckcraft-engine --lib legacy::tests::
 
       - name: Test protection of older deck destinations
-        run: cargo test --locked -p deckcraft-engine --lib legacy_destination_tests::
+        run: |
+          cargo test --locked -p deckcraft-engine --lib legacy_destination_tests::
