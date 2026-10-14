@@ -26,12 +26,12 @@ SlideStrike is a presentation editor project with a slide model, speaker notes, 
 
 ## Current status
 
-The original standalone package passed 21 locked tests and built a Windows native executable in an earlier checkpoint. The newly copied native foundation has **not** been built or launched in this repository. No installer or release is supplied. Presentation compatibility, native interaction, accessibility, and layout fidelity remain unverified.
+The original standalone package passed 21 locked tests and built a Windows native executable in an earlier checkpoint. The native foundation [built on Windows CI](https://github.com/Gerbzz/SlideStrike/actions/runs/38571021743), and its focused legacy import/save tests passed 4/4. The native editor has not been launched or visually accepted. No installer or release is supplied. Presentation compatibility, native interaction, accessibility, and layout fidelity remain unverified.
 
 | Path | Role |
 | --- | --- |
 | `apps/slidestrike` | Original editor and `.sstrike` archive reader/writer. |
-| `native/slidestrike` | Full adapted model, PPTX, render, engine, media, and desktop UI source graph. |
+| `native/slidestrike` | Full adapted model, PPTX, render, engine, media, and desktop UI source graph; desktop build and four focused engine tests passed on Windows CI. |
 | `fixtures/slidestrike` | Small synthetic inputs for the original tests and the new import regression test. |
 
 The native graph retains its internal `deckcraft-*` crate names and `.deckcraft` file format so its model, format, engine, and UI remain coherent. Its desktop executable is named `slidestrike`. The older DesignCraft page export subset supports only the original prototype.
@@ -50,7 +50,7 @@ Use Rust 1.90 or newer and a supported native compiler toolchain. Cargo may need
 cargo test --locked --manifest-path apps/slidestrike/Cargo.toml --all-features
 cargo build --locked --manifest-path apps/slidestrike/Cargo.toml --bin slidestrike-native --features native-ui
 
-# New native foundation (not yet verified in this repository)
+# Native foundation (run its broader engine tests and desktop build)
 cargo test --locked --manifest-path native/slidestrike/Cargo.toml -p deckcraft-engine
 cargo build --locked --manifest-path native/slidestrike/Cargo.toml -p deckcraft --bin slidestrike
 ```
