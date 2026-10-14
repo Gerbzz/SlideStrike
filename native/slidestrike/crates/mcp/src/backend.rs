@@ -85,7 +85,7 @@ impl Backend for Remote {
                 self.conn = None;
                 self.roundtrip(&line).map_err(|e| {
                     self.conn = None;
-                    format!("DeckCraft app at {} is not reachable: {e}", self.addr)
+                    format!("SlideStrike app at {} is not reachable: {e}", self.addr)
                 })?
             }
         };
@@ -102,6 +102,6 @@ impl Backend for Remote {
     }
 
     fn describe(&self) -> String {
-        format!("connected to the DeckCraft app at {}", self.addr)
+        format!("connected to the SlideStrike app at {}", self.addr)
     }
 }

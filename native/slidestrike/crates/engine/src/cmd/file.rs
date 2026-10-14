@@ -85,7 +85,7 @@ pub fn open_presentation(name: &str, bytes: &[u8]) -> Result<Presentation> {
         return Ok(p);
     }
     Err(EngineError::Other(format!(
-        "{name}: not a presentation DeckCraft can read"
+        "{name}: not a presentation SlideStrike can read"
     )))
 }
 

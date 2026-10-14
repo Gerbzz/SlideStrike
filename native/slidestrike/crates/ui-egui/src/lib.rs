@@ -161,7 +161,7 @@ pub const UI_COMMANDS: &[(&str, &str, Option<&str>, &str)] = &[
     ("app.saveAsDialog", "Save As…", None, "{}"),
     ("app.exportDialog", "Export…", None, "{}"),
     ("app.dialog", "Open Dialog", None, "{id}"),
-    ("app.links", "Community Links", None, "{}"),
+    ("app.links", "Project Links", None, "{}"),
 ];
 
 pub struct Perf {
@@ -358,7 +358,7 @@ impl SlideApp {
             }
             "app.links" => {
                 use deckcraft_engine::links::*;
-                return Ok(json!({"discord": DISCORD, "website": WEBSITE, "apps": APPS, "appPage": APP_PAGE, "github": GITHUB}));
+                return Ok(json!({"website": WEBSITE, "apps": APPS, "appPage": APP_PAGE, "github": GITHUB, "upstream": UPSTREAM}));
             }
             _ => return Err(format!("unknown UI command `{id}`")),
         }

@@ -48,3 +48,9 @@ jobs:
       - name: Test protection of older deck destinations
         run: |
           cargo test --locked -p deckcraft-engine --lib legacy_destination_tests::
+
+      - name: Check SlideStrike CLI
+        run: cargo check --locked -p deckcraft-cli
+
+      - name: Test MCP identity and project links
+        run: cargo test --locked -p deckcraft-mcp --lib handshake_and_tool_list

@@ -216,7 +216,7 @@ pub fn open_sample(s: &mut Session) -> Result<()> {
     run(
         s,
         "slide.new",
-        json!({"layout": "title", "title": "Clear skies!", "body": "Made with DeckCraft — free and open source"}),
+        json!({"layout": "title", "title": "Clear skies!", "body": "Made with SlideStrike"}),
     )?;
     let moon = run(
         s,
