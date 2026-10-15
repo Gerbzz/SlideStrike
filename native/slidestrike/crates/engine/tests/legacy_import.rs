@@ -41,8 +41,10 @@ fn image_notes_and_order_survive_native_editable_roundtrip() {
     assert_eq!(report["fontResolution"]["portable"], true);
     let expected_font = "Source Serif 4";
     assert_eq!(report["titleInferred"], true);
-    let doc = &session.doc().unwrap().doc;
     assert!(session.doc().unwrap().path.is_none());
+    assert!(session.doc().unwrap().is_dirty(), "imported deck needs an initial native Save As");
+    assert_eq!(session.execute("document.inspect", &json!({})).unwrap()["dirty"], true);
+    let doc = &session.doc().unwrap().doc;
     assert_eq!(doc.slides.len(), 3);
     assert_eq!(doc.props.title, expected.title);
     assert_eq!(
@@ -120,6 +122,7 @@ fn image_notes_and_order_survive_native_editable_roundtrip() {
     session
         .execute("file.saveAs", &json!({"path": target}))
         .unwrap();
+    assert!(!session.doc().unwrap().is_dirty());
     let mut reopened = Session::new();
     reopened
         .execute("file.open", &json!({"path": target}))

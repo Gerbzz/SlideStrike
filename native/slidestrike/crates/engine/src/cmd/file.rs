@@ -129,6 +129,7 @@ fn import_legacy(s: &mut Session, p: &Value) -> Result<Value> {
         ),
     };
     let index = add_opened(s, path, None, doc);
+    s.doc_mut()?.requires_save_as = true;
     Ok(
         json!({"document": index, "source": path, "slides": slides, "saveAsRequired": true, "historyReset": true, "identifiersRegenerated": true, "titleInferred": title_inferred, "fontResolution": font_resolution, "fontSubstitution": font_substitution}),
     )
@@ -252,6 +253,7 @@ pub fn format_for_path(path: &str) -> &'static str {
 fn mark_saved(s: &mut Session, path: Option<String>) -> Result<()> {
     let st = s.doc_mut()?;
     st.saved_doc = st.doc.clone();
+    st.requires_save_as = false;
     if path.is_some() {
         st.path = path;
     }

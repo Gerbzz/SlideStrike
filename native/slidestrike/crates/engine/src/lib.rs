@@ -150,6 +150,8 @@ pub struct DocState {
     pub path: Option<String>,
     pub revision: u64,
     pub saved_doc: Arc<Presentation>,
+    /// A legacy import has no native saved file, even before any edits.
+    pub requires_save_as: bool,
     pub interaction: Option<Interaction>,
     pub uid: u64,
     pub title: String,
@@ -162,6 +164,7 @@ impl DocState {
         let doc = Arc::new(doc);
         DocState {
             saved_doc: doc.clone(),
+            requires_save_as: false,
             doc,
             selection: Selection::default(),
             history: History {
@@ -189,7 +192,7 @@ impl DocState {
         Some(state)
     }
     pub fn is_dirty(&self) -> bool {
-        !Arc::ptr_eq(&self.doc, &self.saved_doc)
+        self.requires_save_as || !Arc::ptr_eq(&self.doc, &self.saved_doc)
     }
     pub fn title(&self) -> String {
         self.path
