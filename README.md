@@ -15,6 +15,10 @@
 
 SlideStrike provides an editable deck for a presentation in progress. Arrange slides with text and images, keep speaker notes, revise with undo and redo, and export PNG or PDF through the optional native editor.
 
+![SlideStrike draft native editor showing a reopened synthetic launch brief with slide list, ribbon, and blue chart thumbnail](assets/screenshots/slidestrike-native-current.png)
+
+*Current development preview from the tested [draft native foundation](https://github.com/Gerbzz/SlideStrike/pull/1), not the lightweight editor source on `main`.* The app captured this synthetic deck after import, save, and reopen. See [native runtime evidence](docs/NATIVE_RUNTIME_ACCEPTANCE.md); the [earlier editor screenshot](docs/SCREENSHOT_PROVENANCE.md) remains archived. A later draft edit moved the PWDS credit out of the working title row; this capture predates that text change.
+
 <p align="center"><a href="#highlights">Highlights</a> · <a href="#build-and-test">Build and test</a> · <a href="assets/branding">Original artwork</a></p>
 
 ## Highlights
@@ -25,7 +29,7 @@ SlideStrike provides an editable deck for a presentation in progress. Arrange sl
 
 ## Current status
 
-The main branch is a lightweight editor prototype. The standalone package passed 21 locked tests, and its native editor built and rendered an [archived screenshot of the legacy interface](docs/SCREENSHOT_PROVENANCE.md), but no installer or release is supplied. A [newer native foundation remains in draft PR #1](https://github.com/Gerbzz/SlideStrike/pull/1); its [Windows source checks passed on revision `00d189c`](https://github.com/Gerbzz/SlideStrike/actions/runs/38575829825), but it has no matching runtime screenshot or visual acceptance yet. Broad presentation compatibility, native interaction, accessibility, and layout fidelity remain unverified.
+The `main` branch remains a lightweight editor prototype; its standalone package passed 21 locked tests. The [newer native foundation is in draft PR #1](https://github.com/Gerbzz/SlideStrike/pull/1). Its [Windows build and focused tests passed](https://github.com/Gerbzz/SlideStrike/actions/runs/38673620694), and the exact debug executable was checked locally with a synthetic import, save, reopen, and native screenshot. See [runtime evidence](docs/NATIVE_RUNTIME_ACCEPTANCE.md) for source revisions and limits. The draft has not been merged; no installer or release is supplied. Broad presentation compatibility, interactive editing, accessibility, and layout fidelity remain unverified.
 
 ## Deck and exported pages
 
