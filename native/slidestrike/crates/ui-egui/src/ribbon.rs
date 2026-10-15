@@ -46,7 +46,6 @@ pub fn title_bar(app: &mut SlideApp, ui: &mut Ui) {
         );
         child.spacing_mut().item_spacing.x = 2.0;
         child.label(egui::RichText::new("SlideStrike").font(theme::bold(12.0)).color(t.text));
-        child.label(egui::RichText::new("by PWDS").font(theme::font(10.5)).color(t.text_dim));
         child.add_space(8.0);
         let has_doc = app.session.active().is_some();
         let dirty = app.session.active().is_some_and(|d| d.is_dirty());

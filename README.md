@@ -15,9 +15,9 @@
 
 SlideStrike is a presentation editor project with a slide model, speaker notes, images, a native desktop UI, and export paths. This repository preserves the original editable `.sstrike` prototype and includes a fuller native presentation foundation based on a pinned DeckCraft source revision.
 
-![Current SlideStrike native editor reopened on a self-authored three-slide launch brief](assets/screenshots/slidestrike-native-current.png)
+![SlideStrike native editor at tested source b66faf4, reopened on a self-authored three-slide launch brief](assets/screenshots/slidestrike-native-current.png)
 
-This is the **current native foundation**, captured after importing a synthetic `.sstrike` deck, saving it as `.deckcraft`, and reopening it. See [native runtime evidence](docs/NATIVE_RUNTIME_ACCEPTANCE.md). The [older lightweight editor screenshot](assets/screenshots/slidestrike-editor.png) has [separate provenance](docs/SCREENSHOT_PROVENANCE.md).
+This capture is from native source `b66faf4`, after importing a synthetic `.sstrike` deck, saving it as `.deckcraft`, and reopening it. The image predates the subsequent source change that removed publisher wording from the working title row; PWDS remains in About and the start screen. See [native runtime evidence](docs/NATIVE_RUNTIME_ACCEPTANCE.md). The [older lightweight editor screenshot](assets/screenshots/slidestrike-editor.png) has [separate provenance](docs/SCREENSHOT_PROVENANCE.md).
 
 <p align="center"><a href="#highlights">Highlights</a> · <a href="#build-and-test">Build and test</a> · <a href="assets/branding">Original artwork</a></p>
 
