@@ -15,6 +15,10 @@
 
 SlideStrike is a presentation editor project with a slide model, speaker notes, images, a native desktop UI, and export paths. This repository preserves the original editable `.sstrike` prototype and includes a fuller native presentation foundation based on a pinned DeckCraft source revision.
 
+![Current SlideStrike native editor reopened on a self-authored three-slide launch brief](assets/screenshots/slidestrike-native-current.png)
+
+This is the **current native foundation**, captured after importing a synthetic `.sstrike` deck, saving it as `.deckcraft`, and reopening it. See [native runtime evidence](docs/NATIVE_RUNTIME_ACCEPTANCE.md). The [older lightweight editor screenshot](assets/screenshots/slidestrike-editor.png) has [separate provenance](docs/SCREENSHOT_PROVENANCE.md).
+
 <p align="center"><a href="#highlights">Highlights</a> · <a href="#build-and-test">Build and test</a> · <a href="assets/branding">Original artwork</a></p>
 
 ## Highlights
@@ -26,12 +30,12 @@ SlideStrike is a presentation editor project with a slide model, speaker notes, 
 
 ## Current status
 
-The original standalone package passed 21 locked tests at an earlier checkpoint. Its lightweight editor built offline and rendered an [archived screenshot of the legacy interface](docs/SCREENSHOT_PROVENANCE.md). The newer native foundation [built on Windows CI at source revision `00d189c`](https://github.com/Gerbzz/SlideStrike/actions/runs/38575829825), with focused import and overwrite-guard checks passing. That newer editor has no matching runtime screenshot and has not been launched or visually accepted. No installer or release is supplied. Presentation compatibility, native interaction, accessibility, and layout fidelity remain unverified.
+The original standalone package passed 21 locked tests at an earlier checkpoint. Its lightweight editor built offline and rendered an [archived screenshot of the legacy interface](docs/SCREENSHOT_PROVENANCE.md). The newer native foundation [built and passed focused tests on Windows CI at draft source `b66faf4`](https://github.com/Gerbzz/SlideStrike/actions/runs/38673620694). A CI-built executable then passed an isolated Windows check of legacy import, required Save As state, native save/reopen, source preservation, notes, image, and authentic rendered window capture. See [the exact runtime evidence and limits](docs/NATIVE_RUNTIME_ACCEPTANCE.md). No installer or release is supplied. Native interaction, accessibility, and wider presentation fidelity remain unverified.
 
 | Path | Role |
 | --- | --- |
 | `apps/slidestrike` | Original editor and `.sstrike` archive reader/writer. |
-| `native/slidestrike` | Full adapted model, PPTX, render, engine, media, and desktop UI source graph; desktop build and four focused engine tests passed on Windows CI. |
+| `native/slidestrike` | Full adapted model, PPTX, render, engine, media, and desktop UI source graph; desktop build, focused tests, and a synthetic import/save/reopen runtime check passed on Windows. |
 | `fixtures/slidestrike` | Small synthetic inputs for the original tests and the new import regression test. |
 
 The native graph retains its internal `deckcraft-*` crate names and `.deckcraft` file format so its model, format, engine, and UI remain coherent. Its desktop executable is named `slidestrike`. The older DesignCraft page export subset supports only the original prototype.
@@ -40,7 +44,7 @@ The native graph retains its internal `deckcraft-*` crate names and `.deckcraft`
 
 A `.sstrike` deck keeps slide objects and speaker notes editable. PNG and PDF exports contain the presented pages; notes stay in `.sstrike` and are omitted from those exports. The bounded export check used three small synthetic slides, so wider layout fidelity remains open.
 
-The native `Import Older Strike Deck` command converts an existing `.sstrike` archive into an **unsaved** presentation. It checks old archive contents, maps slide objects and notes, and reports any required font substitution. Save As must use a new `.deckcraft` or `.pptx` path; native writes to `.sstrike` are refused to protect the original file. Import resets old undo history and regenerates object IDs. Full visual and fidelity validation is pending.
+The native `Import Older Strike Deck` command converts an existing `.sstrike` archive into an **unsaved** presentation. It checks old archive contents, maps slide objects and notes, and reports any required font substitution. Save As must use a new `.deckcraft` or `.pptx` path; native writes to `.sstrike` are refused to protect the original file. Import resets old undo history and regenerates object IDs. The native draft now keeps an imported deck marked unsaved until Save As so its close guard can prompt. Wider visual and fidelity validation is pending.
 
 ## Build and test
 
@@ -59,7 +63,7 @@ The app has its own `Cargo.lock` and `[workspace]`. Its path dependencies resolv
 
 ## Limits and source terms
 
-The synthetic export checks covered three small slides with visible text and image placement. Native pointer, keyboard, screen reader, high contrast, scaling, presentation controls, font fallback, PPTX losses, media, recovery, and other-platform acceptance are pending. No PowerPoint parity claim is made.
+The synthetic export checks covered three small slides with visible text and image placement. The native runtime check covered one three-slide legacy import, native save/reopen, and a rendered window capture. Native pointer, keyboard, screen reader, high contrast, scaling, presentation controls, font fallback, PPTX losses, broader media, recovery, and other-platform acceptance are pending. No PowerPoint parity claim is made.
 
 The app's first-party license has not been selected; no first-party license grant is made here. The bundled upstream DesignCraft subset retains its original MIT/Apache license texts and third-party notices. The native graph is adapted from [`storytold/deckcraft` commit `be14248577b92059eb2b8c0c9460cceffbc1f01d`](https://github.com/storytold/deckcraft/commit/be14248577b92059eb2b8c0c9460cceffbc1f01d), with its MIT/Apache licenses, notice, and attribution. The included Source Serif 4 original retains its OFL notice. See [SOURCE_SCOPE.md](SOURCE_SCOPE.md) and [native source adaptation](native/slidestrike/ADAPTATION.md). Review dependency notices, including Symphonia's MPL-2.0 terms, before distributing binaries.
 
