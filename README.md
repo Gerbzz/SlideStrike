@@ -13,9 +13,9 @@
 
 <p align="center"><strong>Build the story one slide at a time.</strong></p>
 
-SlideStrike is a presentation editor project with a slide model, speaker notes, images, a native desktop UI, and export paths. This repository preserves the original editable `.sstrike` prototype and includes a fuller native presentation foundation based on a pinned DeckCraft source revision.
+SlideStrike lets you build editable decks with text, images, and speaker notes. This repository preserves the original `.sstrike` prototype and adds a fuller native presentation foundation with a desktop editor, rendering, media, and export paths, based on a pinned DeckCraft source revision.
 
-![SlideStrike native editor at tested source b66faf4, reopened on a self-authored three-slide launch brief](assets/screenshots/slidestrike-native-current.png)
+![SlideStrike native editor showing a reopened synthetic launch brief with slide list, ribbon, and blue chart thumbnail](assets/screenshots/slidestrike-native-current.png)
 
 This capture is from native source `b66faf4`, after importing a synthetic `.sstrike` deck, saving it as `.deckcraft`, and reopening it. The image predates the subsequent source change that removed publisher wording from the working title row; PWDS remains in About and the start screen. See [native runtime evidence](docs/NATIVE_RUNTIME_ACCEPTANCE.md). The [older lightweight editor screenshot](assets/screenshots/slidestrike-editor.png) has [separate provenance](docs/SCREENSHOT_PROVENANCE.md).
 

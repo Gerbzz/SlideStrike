@@ -9,6 +9,10 @@ on:
       - apps/slidestrike/**
       - vendor/designcraft-page/**
       - fixtures/slidestrike/**
+      - README.md
+      - assets/branding/**
+      - assets/screenshots/**
+      - docs/NATIVE_RUNTIME_ACCEPTANCE.md
 
 permissions:
   contents: read
@@ -44,6 +48,7 @@ jobs:
       - name: Test older deck import and native save/reopen
         run: |
           cargo test --locked -p deckcraft-engine --lib legacy::tests::
+          cargo test --locked -p deckcraft-engine --test legacy_import
 
       - name: Test protection of older deck destinations
         run: |
@@ -54,33 +59,3 @@ jobs:
 
       - name: Test MCP identity and project links
         run: cargo test --locked -p deckcraft-mcp --lib handshake_and_tool_list
-
-      - name: Record native executable identity
-        if: github.event.pull_request.number == 1 && github.event.pull_request.head.repo.full_name == github.repository
-        env:
-          SLIDESTRIKE_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-        run: |
-          $path = 'target/debug/slidestrike.exe'
-          $file = Get-Item -LiteralPath $path -ErrorAction Stop
-          if ($file.Length -gt 96MB) { throw 'SlideStrike executable exceeds 96 MiB artifact cap' }
-          $manifest = [ordered]@{
-            repository = $env:GITHUB_REPOSITORY
-            buildCommit = $env:GITHUB_SHA
-            sourceCommit = $env:SLIDESTRIKE_HEAD_SHA
-            executable = 'slidestrike.exe'
-            sizeBytes = $file.Length
-            sha256 = (Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant()
-            profile = 'dev; debug=0; incremental=0'
-          }
-          $manifest | ConvertTo-Json | Set-Content -LiteralPath 'target/debug/slidestrike-manifest.json' -Encoding utf8
-
-      - name: Retain executable for native acceptance
-        if: github.event.pull_request.number == 1 && github.event.pull_request.head.repo.full_name == github.repository
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
-        with:
-          name: slidestrike-win64-${{ github.event.pull_request.head.sha }}
-          path: |
-            native/slidestrike/target/debug/slidestrike.exe
-            native/slidestrike/target/debug/slidestrike-manifest.json
-          if-no-files-found: error
-          retention-days: 1
