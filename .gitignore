@@ -1,6 +1,10 @@
 /target/
 /apps/slidestrike/target/
 /vendor/designcraft-page/target/
+/native/slidestrike/target/
+**/.env
+**/.env.*
 *.sstrike
+*.saving
 *.tmp
 *.log

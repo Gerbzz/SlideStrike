@@ -1,0 +1,11 @@
+# SlideStrike native source adaptation
+
+Source: [`storytold/deckcraft` commit `be14248577b92059eb2b8c0c9460cceffbc1f01d`](https://github.com/storytold/deckcraft/commit/be14248577b92059eb2b8c0c9460cceffbc1f01d). The copied graph retains its internal DeckCraft crate/package names and `.deckcraft` format. This is source integration, not a tested SlideStrike release.
+
+The presentation model, text, render, PDF, PPTX, animation, media, engine, egui editor and desktop source graph is present. The desktop target is `slidestrike`; Windows metadata, app ID, settings folder, visible UI titles, About panel and icons use SlideStrike. Donor icon and brand files were excluded; upstream source and copyright remain attributed. The media graph directly includes Symphonia under MPL-2.0, so packaging needs its notice and source/license review.
+
+`assets/app-icon/slidestrike.png` copies the approved original `../../assets/branding/SlideStrike.png` peacock. Its 256 px PNG and Windows ICO are deterministic icon encodings of the same image. The old placeholder presentation-board icon is absent. These Strike and PWDS marks are separate brand assets and are not relicensed by the donor source licenses.
+
+The older `../../apps/slidestrike` `.sstrike` archive remains separate. The native `file.importLegacy` command reads through that bounded archive reader, checks referenced assets, converts objects and notes, and opens an unsaved presentation. Native save/export refuse `.sstrike` destinations. Original text uses the bundled, verified Source Serif 4 face or requires explicit font substitution. Old undo history and identifiers are not transferred. Its three-slide synthetic fixture with image, alt text, geometry and private notes is the explicit regression gate; [Windows CI](https://github.com/Gerbzz/SlideStrike/actions/runs/38571021743) passed the focused import, native save/reopen, font, and source byte preservation tests (4 passed, 0 failed). Wider visual and format fidelity checks remain open.
+
+Validate save/reopen, undo, slide order, rendering, audience PDF/PNG, PPTX losses, presenter UI, media behavior, keyboard/accessibility and recovery on Windows before claiming those workflows. No current claim of PowerPoint compatibility or mobile support is made.

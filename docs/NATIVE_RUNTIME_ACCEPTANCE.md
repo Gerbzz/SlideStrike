@@ -1,7 +1,5 @@
 # Native editor runtime check
 
-This record documents a native editor preview from [draft PR #1](https://github.com/Gerbzz/SlideStrike/pull/1). The public `main` branch still contains the earlier lightweight editor source; the screenshot below was captured from the tested draft executable, not built from `main`.
-
 The [draft SlideStrike foundation PR](https://github.com/Gerbzz/SlideStrike/pull/1) was built by [Windows Actions run 38673620694](https://github.com/Gerbzz/SlideStrike/actions/runs/38673620694). That run compiled the `slidestrike` desktop target, passed focused legacy import and save/reopen tests, passed the older deck overwrite guard, checked the CLI, passed an MCP identity test, and retained a one-day executable artifact. The source head was `b66faf4f3f3c3d2b4bb50b332f180a0d036b5ea2`; the tested PR merge build was `6ee65b67ea23399fe0689dc8812f1da238287b9f`. The 48,958,976-byte debug executable reported `slidestrike 0.5.0` and SHA-256 `646D4C3F41F0197530D9AD2F9DEA7068E29E366605B92BD0132BE1008BCB441B`.
 
 On 15 October 2026 UTC, that exact executable ran on Windows with app settings directed to an isolated workspace folder. The self-authored `.sstrike` launch brief (SHA-256 `D1ADE92B734A663E2F2A01488056FE7BCF0A994856A5998E62C37790E8DE78C1`) has three fictional slides, notes, and a small original blue chart. The app's local control interface performed these checks:
