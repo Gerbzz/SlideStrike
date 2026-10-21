@@ -130,7 +130,7 @@ fn services() -> Services {
 const APP_ID: &str = "org.strike.slidestrike";
 
 fn app_icon() -> Option<egui::IconData> {
-    let png: &[u8] = include_bytes!("../../../assets/app-icon/slidestrike-256.png");
+    let png: &[u8] = include_bytes!("../../../assets/app-icon/slidestrike-geometric-256.png");
     eframe::icon_data::from_png_bytes(png).map_err(|e| log::warn!("app icon: {e}")).ok()
 }
 

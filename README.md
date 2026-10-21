@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/branding/SlideStrike.png" alt="Original SlideStrike logo" width="160" height="160">
+  <img src="assets/branding/SlideStrike-geometric.svg" alt="SlideStrike: a raised deck with one decisive visual" width="160" height="160">
 </p>
 
 <h1 align="center">SlideStrike</h1>
@@ -71,4 +71,4 @@ The app's first-party license has not been selected; no first-party license gran
 
 The company mark in this masthead is the existing [official PWDS logo](https://github.com/Gerbzz/PWDS-Website/blob/main/public/prowebdevsolutions-logo.png), with the [official orange display asset](https://prowebdevsolutions.com/images/prowebdevsolutions-logo-orange.svg) for dark backgrounds. The app logo above it remains the original Strike suite artwork.
 
-The SlideStrike peacock and PWDS artwork are separate brand assets; no public license for those marks is granted here.
+The original geometric SlideStrike mark, preserved historical peacock artwork and PWDS artwork are separate brand assets; no public license for those marks is granted here.

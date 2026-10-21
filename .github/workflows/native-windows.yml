@@ -13,6 +13,8 @@ on:
       - assets/branding/**
       - assets/screenshots/**
       - docs/NATIVE_RUNTIME_ACCEPTANCE.md
+      - tools/verify_geometric_identity.py
+      - tools/test_verify_geometric_identity.py
 
 permissions:
   contents: read
@@ -31,6 +33,7 @@ jobs:
       CARGO_INCREMENTAL: '0'
       CARGO_PROFILE_DEV_DEBUG: '0'
       CARGO_PROFILE_TEST_DEBUG: '0'
+      DECKCRAFT_REQUIRE_WINRES: '1'
     steps:
       - name: Check out source
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -44,6 +47,17 @@ jobs:
 
       - name: Build SlideStrike desktop editor
         run: cargo build --locked -p deckcraft --bin slidestrike
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Verify geometric branding and embedded Windows icon payloads
+        run: |
+          python ../../tools/test_verify_geometric_identity.py
+          if ($LASTEXITCODE -ne 0) { throw 'Packaged icon negative controls failed' }
+          python ../../tools/verify_geometric_identity.py --svg ../../assets/branding/SlideStrike-geometric.svg --png ../../assets/branding/SlideStrike-geometric.png --ico assets/app-icon/slidestrike-geometric.ico --original ../../assets/branding/SlideStrike.png --original-sha256 2006fa5bb46e7d1ecb0001fc15648b6517562c4046a7215899f4d5b1a178a2e1 --exe target/debug/slidestrike.exe | Tee-Object -FilePath "$env:RUNNER_TEMP/slidestrike-branding-proof.json"
+          if ($LASTEXITCODE -ne 0) { throw 'Geometric branding verification failed' }
 
       - name: Test older deck import and native save/reopen
         run: |
@@ -59,3 +73,12 @@ jobs:
 
       - name: Test MCP identity and project links
         run: cargo test --locked -p deckcraft-mcp --lib handshake_and_tool_list
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: slidestrike-geometric-branding-native
+          path: |
+            native/slidestrike/target/debug/slidestrike.exe
+            ${{ runner.temp }}/slidestrike-branding-proof.json
+          if-no-files-found: error
+          retention-days: 1
