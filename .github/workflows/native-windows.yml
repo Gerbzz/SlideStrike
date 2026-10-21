@@ -15,6 +15,7 @@ on:
       - docs/NATIVE_RUNTIME_ACCEPTANCE.md
       - tools/verify_geometric_identity.py
       - tools/test_verify_geometric_identity.py
+      - tools/capture_native_readme.ps1
 
 permissions:
   contents: read
@@ -77,6 +78,24 @@ jobs:
       - name: Test MCP identity and project links
         run: cargo test --locked -p deckcraft-mcp --lib handshake_and_tool_list
 
+      - name: Capture the actual native editor with the public sample
+        id: capture
+        env:
+          SLIDESTRIKE_CAPTURE_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          ../../tools/capture_native_readme.ps1 -Executable target/debug/slidestrike.exe -OutputDirectory "$env:RUNNER_TEMP/slidestrike-readme-capture"
+
+      - name: Upload native screenshot evidence
+        if: ${{ always() && steps.capture.outcome != 'skipped' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: slidestrike-native-readme-capture
+          path: |
+            ${{ runner.temp }}/slidestrike-readme-capture/*.png
+            ${{ runner.temp }}/slidestrike-readme-capture/proof.json
+          if-no-files-found: error
+          retention-days: 1
+
       - uses: actions/upload-artifact@v4
         with:
           name: slidestrike-geometric-branding-native
@@ -85,4 +104,5 @@ jobs:
             ${{ runner.temp }}/slidestrike-branding-proof.json
           if-no-files-found: error
           retention-days: 1
+
 
