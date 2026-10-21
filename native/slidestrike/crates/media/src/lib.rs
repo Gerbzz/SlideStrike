@@ -1,7 +1,7 @@
 //! DeckCraft media: everything between embedded media bytes and the speakers / the screen.
 //!
 //! - [`probe`]: container, duration, audio channels / sample rate, video size / frame rate.
-//! - [`audio::decode`]: every common audio format to interleaved f32 [`audio::Pcm`] - MP3, AAC
+//! - [`audio::decode`]: every common audio format to interleaved f32 [`audio::Pcm`] — MP3, AAC
 //!   (M4A, ADTS), ALAC, WAV, AIFF, CAF, FLAC, Ogg Vorbis, Opus (Ogg / WebM / Matroska) and the audio
 //!   track of MP4/MOV/WebM videos. WMA (ASF) is recognised and probed but not decoded.
 //! - [`video::VideoDecoder`]: H.264, HEVC, VP9 and AV1 in MP4/MOV and WebM/Matroska to RGBA
@@ -92,7 +92,7 @@ impl Container {
             Container::Asf
         } else if at(0, b"ID3") {
             // ID3v2 is followed by MP3 frames (or, rarely, ADTS). The chain of tags is walked
-            // iteratively - a crafted file can carry thousands of empty tags - and only the
+            // iteratively — a crafted file can carry thousands of empty tags — and only the
             // bytes after the last one are sniffed.
             let mut rest = b;
             while rest.starts_with(b"ID3") {
