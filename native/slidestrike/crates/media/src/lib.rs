@@ -1,7 +1,7 @@
 //! DeckCraft media: everything between embedded media bytes and the speakers / the screen.
 //!
 //! - [`probe`]: container, duration, audio channels / sample rate, video size / frame rate.
-//! - [`audio::decode`]: every common audio format to interleaved f32 [`audio::Pcm`] — MP3, AAC
+//! - [`audio::decode`]: every common audio format to interleaved f32 [`audio::Pcm`] - MP3, AAC
 //!   (M4A, ADTS), ALAC, WAV, AIFF, CAF, FLAC, Ogg Vorbis, Opus (Ogg / WebM / Matroska) and the audio
 //!   track of MP4/MOV/WebM videos. WMA (ASF) is recognised and probed but not decoded.
 //! - [`video::VideoDecoder`]: H.264, HEVC, VP9 and AV1 in MP4/MOV and WebM/Matroska to RGBA
@@ -91,9 +91,15 @@ impl Container {
         } else if at(0, &ASF_HEADER) {
             Container::Asf
         } else if at(0, b"ID3") {
-            // ID3v2 is followed by MP3 frames (or, rarely, ADTS).
-            let size = b.get(6..10).map(|s| s.iter().fold(0usize, |a, &x| (a << 7) | (x & 0x7f) as usize)).unwrap_or(0);
-            match Container::sniff(b.get(10 + size..).unwrap_or(&[])) {
+            // ID3v2 is followed by MP3 frames (or, rarely, ADTS). The chain of tags is walked
+            // iteratively - a crafted file can carry thousands of empty tags - and only the
+            // bytes after the last one are sniffed.
+            let mut rest = b;
+            while rest.starts_with(b"ID3") {
+                let size = rest.get(6..10).map(|s| s.iter().fold(0usize, |a, &x| (a << 7) | (x & 0x7f) as usize)).unwrap_or(0);
+                rest = rest.get(10 + size..).unwrap_or(&[]);
+            }
+            match Container::sniff(rest) {
                 Container::Adts => Container::Adts,
                 _ => Container::Mp3,
             }
@@ -125,3 +131,78 @@ impl Container {
 
 /// Worker threads are available (not on wasm32).
 pub(crate) const THREADS: bool = !cfg!(target_arch = "wasm32");
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn id3_tag_chains_do_not_recurse_the_stack() {
+        // 2 MB of empty ID3v2 tags (10 bytes each) chained ahead of the MP3 frames: walking
+        // the chain must not cost one stack frame per tag.
+        let mut b = Vec::with_capacity(200_000 * 10 + 2);
+        for _ in 0..200_000 {
+            b.extend_from_slice(&[b'I', b'D', b'3', 4, 0, 0, 0, 0, 0, 0]);
+        }
+        b.extend_from_slice(&[0xFF, 0xFB]); // an MP3 frame sync
+        assert_eq!(Container::sniff(&b), Container::Mp3);
+        // ADTS after the same long chain must retain its classification too.
+        if let Some(sync) = b.last_mut() {
+            *sync = 0xF1;
+        }
+        assert_eq!(Container::sniff(&b), Container::Adts);
+    }
+
+    #[test]
+    fn id3_tag_sizes_skip_payloads_before_the_next_tag() {
+        // A synchsafe size of 128 bytes, with a false ID3 signature inside the payload.
+        let mut b = b"ID3\x04\0\0\0\0\x01\0".to_vec();
+        b.extend_from_slice(b"ID3");
+        b.resize(10 + 128, 0);
+        b.extend_from_slice(b"ID3\x04\0\0\0\0\0\0\xFF\xF1");
+        assert_eq!(Container::sniff(&b), Container::Adts);
+        // The high bit of a size byte is masked, as in the original parser.
+        b[9] = 0x80;
+        assert_eq!(Container::sniff(&b), Container::Adts);
+    }
+
+    #[test]
+    fn incomplete_id3_tags_keep_the_mp3_fallback() {
+        let empty_tag = b"ID3\x04\0\0\0\0\0\0";
+        for len in 3..=empty_tag.len() {
+            assert_eq!(Container::sniff(&empty_tag[..len]), Container::Mp3);
+        }
+        for tail in [b"ID3".as_slice(), b"garbage", b"ID3\x04\0\0\x7F\x7F\x7F\x7F"] {
+            let mut b = empty_tag.to_vec();
+            b.extend_from_slice(tail);
+            assert_eq!(Container::sniff(&b), Container::Mp3);
+        }
+    }
+
+    #[test]
+    fn container_headers_keep_existing_formats() {
+        for (bytes, expected) in [
+            (b"\0\0\0\0ftyp".as_slice(), Container::Mp4),
+            (b"\0\0\0\0moov", Container::Mp4),
+            (b"\0\0\0\0mdat", Container::Mp4),
+            (b"\0\0\0\0wide", Container::Mp4),
+            (b"\0\0\0\0free", Container::Mp4),
+            (b"\x1A\x45\xDF\xA3", Container::Matroska),
+            (b"OggS", Container::Ogg),
+            (b"RIFF\0\0\0\0WAVE", Container::Wav),
+            (b"RF64\0\0\0\0WAVE", Container::Wav),
+            (b"FORM\0\0\0\0AIFF", Container::Aiff),
+            (b"FORM\0\0\0\0AIFC", Container::Aiff),
+            (b"caff", Container::Caf),
+            (b"fLaC", Container::Flac),
+            (ASF_HEADER.as_slice(), Container::Asf),
+            (b"\xFF\xFB", Container::Mp3),
+            (b"\xFF\xF1", Container::Adts),
+            (b"", Container::Unknown),
+            (b"\xFF", Container::Unknown),
+            (b"garbage", Container::Unknown),
+        ] {
+            assert_eq!(Container::sniff(bytes), expected, "{bytes:?}");
+        }
+    }
+}
