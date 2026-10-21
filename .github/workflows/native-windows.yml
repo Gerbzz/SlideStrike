@@ -59,6 +59,9 @@ jobs:
           python ../../tools/verify_geometric_identity.py --svg ../../assets/branding/SlideStrike-geometric.svg --png ../../assets/branding/SlideStrike-geometric.png --ico assets/app-icon/slidestrike-geometric.ico --original ../../assets/branding/SlideStrike.png --original-sha256 2006fa5bb46e7d1ecb0001fc15648b6517562c4046a7215899f4d5b1a178a2e1 --exe target/debug/slidestrike.exe | Tee-Object -FilePath "$env:RUNNER_TEMP/slidestrike-branding-proof.json"
           if ($LASTEXITCODE -ne 0) { throw 'Geometric branding verification failed' }
 
+      - name: Test media container guards and existing formats
+        run: cargo test --locked -p deckcraft-media --lib --test decode
+
       - name: Test older deck import and native save/reopen
         run: |
           cargo test --locked -p deckcraft-engine --lib legacy::tests::
@@ -82,3 +85,4 @@ jobs:
             ${{ runner.temp }}/slidestrike-branding-proof.json
           if-no-files-found: error
           retention-days: 1
+
