@@ -45,6 +45,9 @@ jobs:
       - name: Build SlideStrike desktop editor
         run: cargo build --locked -p deckcraft --bin slidestrike
 
+      - name: Test media container guards and existing formats
+        run: cargo test --locked -p deckcraft-media --lib --test decode
+
       - name: Test older deck import and native save/reopen
         run: |
           cargo test --locked -p deckcraft-engine --lib legacy::tests::
