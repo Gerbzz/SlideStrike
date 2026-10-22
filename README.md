@@ -15,9 +15,9 @@
 
 SlideStrike lets you build editable decks with text, images, and speaker notes. This repository preserves the original `.sstrike` prototype and adds a fuller native presentation foundation with a desktop editor, rendering, media, and export paths, based on a pinned DeckCraft source revision.
 
-![SlideStrike native editor showing a reopened synthetic launch brief with slide list, ribbon, and blue chart thumbnail](assets/screenshots/slidestrike-native-current.png)
+![SlideStrike native presentation editor showing the Northern Lights title slide, ribbon, slide list and speaker notes](assets/screenshots/native-2026-10-22/slidestrike-title-client.png)
 
-This capture is from native source `b66faf4`, after importing a synthetic `.sstrike` deck, saving it as `.deckcraft`, and reopening it. The image predates the subsequent source change that removed publisher wording from the working title row; PWDS remains in About and the start screen. See [native runtime evidence](docs/NATIVE_RUNTIME_ACCEPTANCE.md). The [older lightweight editor screenshot](assets/screenshots/slidestrike-editor.png) has [separate provenance](docs/SCREENSHOT_PROVENANCE.md).
+The native presentation foundation on Windows, displaying its built-in public **Northern Lights** sample. This original native capture was recorded on 22 October 2026 from the same native application source as main `0931f68`. See [capture provenance and runtime evidence](docs/NATIVE_RUNTIME_ACCEPTANCE.md). The [older lightweight editor screenshot](assets/screenshots/slidestrike-editor.png) and [historical import/save capture](assets/screenshots/archive/slidestrike-native-b66faf4.png) are preserved separately.
 
 <p align="center"><a href="#highlights">Highlights</a> · <a href="#build-and-test">Build and test</a> · <a href="assets/branding">Original artwork</a></p>
 
@@ -30,7 +30,7 @@ This capture is from native source `b66faf4`, after importing a synthetic `.sstr
 
 ## Current status
 
-The original standalone package passed 21 locked tests at an earlier checkpoint. Its lightweight editor built offline and rendered an [archived screenshot of the legacy interface](docs/SCREENSHOT_PROVENANCE.md). The newer native foundation [built and passed focused tests on Windows CI at draft source `b66faf4`](https://github.com/Gerbzz/SlideStrike/actions/runs/38673620694). A CI-built executable then passed an isolated Windows check of legacy import, required Save As state, native save/reopen, source preservation, notes, image, and authentic rendered window capture. See [the exact runtime evidence and limits](docs/NATIVE_RUNTIME_ACCEPTANCE.md). No installer or release is supplied. Native interaction, accessibility, and wider presentation fidelity remain unverified.
+The original standalone package passed 21 locked tests at an earlier checkpoint. Its lightweight editor built offline and rendered an [archived screenshot of the legacy interface](docs/SCREENSHOT_PROVENANCE.md). The native foundation [built and passed Windows checks at capture source `34bb844`](https://github.com/Gerbzz/SlideStrike/actions/runs/39694465493): embedded geometric icon payloads, media guards and formats, legacy import/save, destination protection, CLI and MCP identity. That executable also rendered the public eight-slide sample, captured its title and chart views, and exited cleanly. The earlier synthetic legacy import/save/reopen runtime check remains [documented with its exact source and limits](docs/NATIVE_RUNTIME_ACCEPTANCE.md). No installer or release is supplied. Broader native interaction, accessibility, and presentation fidelity remain unverified.
 
 | Path | Role |
 | --- | --- |
@@ -41,6 +41,10 @@ The original standalone package passed 21 locked tests at an earlier checkpoint.
 The native graph retains its internal `deckcraft-*` crate names and `.deckcraft` file format so its model, format, engine, and UI remain coherent. Its desktop executable is named `slidestrike`. The older DesignCraft page export subset supports only the original prototype.
 
 ## Deck and exported pages
+
+![SlideStrike native presentation editor displaying a column chart in the public Northern Lights sample](assets/screenshots/native-2026-10-22/slidestrike-chart-client.png)
+
+The sample's fifth slide in the same native Windows session. The chart, ribbon and slide navigation are original application-rendered pixels; [the capture proof](assets/screenshots/native-2026-10-22/proof.json) records source and image hashes.
 
 A `.sstrike` deck keeps slide objects and speaker notes editable. PNG and PDF exports contain the presented pages; notes stay in `.sstrike` and are omitted from those exports. The bounded export check used three small synthetic slides, so wider layout fidelity remains open.
 
@@ -63,7 +67,7 @@ The app has its own `Cargo.lock` and `[workspace]`. Its path dependencies resolv
 
 ## Limits and source terms
 
-The synthetic export checks covered three small slides with visible text and image placement. The native runtime check covered one three-slide legacy import, native save/reopen, and a rendered window capture. Native pointer, keyboard, screen reader, high contrast, scaling, presentation controls, font fallback, PPTX losses, broader media, recovery, and other-platform acceptance are pending. No PowerPoint parity claim is made.
+The synthetic export checks covered three small slides with visible text and image placement. The historical native runtime check covered one three-slide legacy import and native save/reopen; the current hosted capture covers two views of the public eight-slide sample. Native pointer, keyboard, screen reader, high contrast, scaling, presentation controls, font fallback, PPTX losses, broader media, recovery, and other-platform acceptance are pending. No PowerPoint parity claim is made.
 
 The app's first-party license has not been selected; no first-party license grant is made here. The bundled upstream DesignCraft subset retains its original MIT/Apache license texts and third-party notices. The native graph is adapted from [`storytold/deckcraft` commit `be14248577b92059eb2b8c0c9460cceffbc1f01d`](https://github.com/storytold/deckcraft/commit/be14248577b92059eb2b8c0c9460cceffbc1f01d), with its MIT/Apache licenses, notice, and attribution. The included Source Serif 4 original retains its OFL notice. See [SOURCE_SCOPE.md](SOURCE_SCOPE.md) and [native source adaptation](native/slidestrike/ADAPTATION.md). Review dependency notices, including Symphonia's MPL-2.0 terms, before distributing binaries.
 
@@ -72,3 +76,4 @@ The app's first-party license has not been selected; no first-party license gran
 The company mark in this masthead is the existing [official PWDS logo](https://github.com/Gerbzz/PWDS-Website/blob/main/public/prowebdevsolutions-logo.png), with the [official orange display asset](https://prowebdevsolutions.com/images/prowebdevsolutions-logo-orange.svg) for dark backgrounds. The app logo above it remains the original Strike suite artwork.
 
 The original geometric SlideStrike mark, preserved historical peacock artwork and PWDS artwork are separate brand assets; no public license for those marks is granted here.
+

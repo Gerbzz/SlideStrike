@@ -1,0 +1,54 @@
+{
+  "status": "captured-for-independent-visual-review",
+  "error": null,
+  "sourceRevision": "49a4cab4206e32e11a36e3f125706ad7f4653253",
+  "sourceTree": "c789379683a602e5a9d714de7c54319f56997dbf",
+  "nativeAppTree": "2ecac784685591743424aa576e738344853d22e8",
+  "pullRequestHead": "34bb844cddb9683233f52bdbf8e7932ecf6c5fbf",
+  "runId": "39694465493",
+  "capturedAtUtc": "2026-10-22T00:04:49.2955520Z",
+  "executableSha256": "782B6A0757E4CBC35B5EDCABCA4F8AF4AF332964F23B325BF0C4F6C045D93064",
+  "publicFixture": "native/slidestrike/crates/engine/src/sample.rs",
+  "fixtureSha256": "669AA869256D48DEABB4E1C7FF19A8C3A511079DC7049F35B56642852A398A98",
+  "processId": 3564,
+  "windowHandle": 851990,
+  "windowTitle": "SlideStrike",
+  "windowClass": "Window Class",
+  "foregroundAndProcessOwnershipVerified": true,
+  "captures": [
+    {
+      "view": "title",
+      "slideIndex": 0,
+      "client": {
+        "height": 633,
+        "file": "slidestrike-title-client.png",
+        "width": 960,
+        "sha256": "AD0874042965D32A1B3AE2E7EE5CD35B739245190BD0D4E7BC15CAEDE2D7A46E"
+      },
+      "window": {
+        "height": 672,
+        "file": "slidestrike-title-window.png",
+        "width": 976,
+        "sha256": "77B39C67FAF5301783011829E90104580AC08B74F8624E306E84185E099C9DD5"
+      }
+    },
+    {
+      "view": "chart",
+      "slideIndex": 4,
+      "client": {
+        "height": 633,
+        "file": "slidestrike-chart-client.png",
+        "width": 960,
+        "sha256": "4E029051DF02D0992048F5872EEB7BB4A00956D7B5FE9AE83B3C1B26411804C1"
+      },
+      "window": {
+        "height": 672,
+        "file": "slidestrike-chart-window.png",
+        "width": 976,
+        "sha256": "A93D155A3C4179F2DCD1CC1FB4041E83DF79DF1C57349BA4391DC9D73650D390"
+      }
+    }
+  ],
+  "rasterEdits": false,
+  "limits": "Hosted native public-sample capture. Requires independent visual review; not Room, taskbar, alternate DPI, installer or release acceptance."
+}
