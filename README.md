@@ -15,6 +15,12 @@
 
 SlideStrike lets you build editable decks with text, images, and speaker notes. This repository preserves the original `.sstrike` prototype and adds a fuller native presentation foundation with a desktop editor, rendering, media, and export paths, based on a pinned DeckCraft source revision.
 
+## Rust direction and migration status
+
+- **Target:** Adapt and extend the existing Rust DeckCraft foundation into SlideStrike, rather than rewrite an already-Rust presentation engine.
+- **Current implementation:** Published `main` contains the Rust model/PPTX/render/media/editor graph in [`native/slidestrike`](native/slidestrike/), plus the original Rust `.sstrike` prototype in [`apps/slidestrike`](apps/slidestrike/) and an explicit legacy import path.
+- **Remaining migration:** Consolidate on the DeckCraft-based desktop while retaining legacy-file support and existing fixes. Broad PPTX fidelity, animation playback, native interaction, accessibility, and release packaging remain open; a bounded backport or sample capture is not PowerPoint parity.
+
 ![SlideStrike native presentation editor showing the Northern Lights title slide, ribbon, slide list and speaker notes](assets/screenshots/native-2026-10-22/slidestrike-title-client.png)
 
 The native presentation foundation on Windows, displaying its built-in public **Northern Lights** sample. This original native capture was recorded on 22 October 2026 from the same native application source as main `0931f68`. See [capture provenance and runtime evidence](docs/NATIVE_RUNTIME_ACCEPTANCE.md). The [older lightweight editor screenshot](assets/screenshots/slidestrike-editor.png) and [historical import/save capture](assets/screenshots/archive/slidestrike-native-b66faf4.png) are preserved separately.
