@@ -72,6 +72,9 @@ jobs:
         run: |
           cargo test --locked -p deckcraft-engine --lib legacy_destination_tests::
 
+      - name: Test animation cleanup on shape and group deletion
+        run: cargo test --locked -p deckcraft-engine --test animation_delete
+
       - name: Check SlideStrike CLI
         run: cargo check --locked -p deckcraft-cli
 
