@@ -927,3 +927,27 @@ fn inserted_hyperlinks_look_like_links() {
         false
     );
 }
+
+#[test]
+fn text_set_crlf_makes_clean_paragraphs() {
+    let mut s = session();
+    let r = s.execute("insert.textBox", &json!({"text": "original"})).unwrap();
+    let id = r["id"].as_u64().unwrap();
+    for (source, expected) in [
+        ("one\r\ntwo", "one\ntwo"),
+        ("a\rb", "a\nb"),
+        ("é\r\n\r漢\n", "é\n\n漢\n"),
+        ("a\nb", "a\nb"),
+        ("", ""),
+    ] {
+        let before = s.execute("text.get", &json!({"id": id})).unwrap();
+        s.execute("text.set", &json!({"id": id, "text": source})).unwrap();
+        let text = s.execute("text.get", &json!({"id": id})).unwrap();
+        assert_eq!(text["text"], expected, "{source:?}");
+        assert!(text["paragraphs"].as_array().unwrap().iter().all(|p| !p["text"].as_str().unwrap().contains('\r')));
+        s.execute("edit.undo", &json!({})).unwrap();
+        assert_eq!(s.execute("text.get", &json!({"id": id})).unwrap()["text"], before["text"]);
+        s.execute("edit.redo", &json!({})).unwrap();
+        assert_eq!(s.execute("text.get", &json!({"id": id})).unwrap()["text"], expected);
+    }
+}
