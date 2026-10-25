@@ -75,6 +75,12 @@ jobs:
       - name: Test animation cleanup on shape and group deletion
         run: cargo test --locked -p deckcraft-engine --test animation_delete
 
+      - name: Test distribution selection extent and undo/redo
+        run: cargo test --locked -p deckcraft-engine --test distribution
+
+      - name: Test complete engine regression suite
+        run: cargo test --locked -p deckcraft-engine
+
       - name: Check SlideStrike CLI
         run: cargo check --locked -p deckcraft-cli
 
